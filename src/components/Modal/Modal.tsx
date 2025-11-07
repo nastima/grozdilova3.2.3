@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import type { ModalProps  } from '../types/types';
+import type { ModalProps  } from '../../types/types';
 
 
 function Modal({ launch, isOpen, onClose }: ModalProps) {
@@ -24,6 +24,7 @@ function Modal({ launch, isOpen, onClose }: ModalProps) {
 
     return createPortal(
         <div
+            data-testid="modal-backdrop"
             style={{
                 position: 'fixed',
                 top: 0,
@@ -40,6 +41,7 @@ function Modal({ launch, isOpen, onClose }: ModalProps) {
             onClick={onClose}
         >
             <div
+                data-testid="modal-content"
                 style={{
                     backgroundColor: 'white',
                     padding: '24px',

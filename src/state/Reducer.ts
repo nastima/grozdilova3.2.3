@@ -1,4 +1,4 @@
-import type { LaunchState, LaunchAction  } from '../types/types.ts';
+import type { LaunchState, LaunchAction  } from '../types/types';
 
 export const initialState: LaunchState = {
     launches: [],
@@ -8,7 +8,7 @@ export const initialState: LaunchState = {
     isModalOpen: false,
 };
 
-export function launchReducer(state: LaunchState, action: LaunchAction): LaunchState {
+export function reducer(state: LaunchState, action: LaunchAction): LaunchState {
     switch (action.type) {
         case 'FETCH_START':
             return { ...state, loading: true, error: null };

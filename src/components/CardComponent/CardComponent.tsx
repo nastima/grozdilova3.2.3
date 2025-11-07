@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Text, Image, Button } from '@mantine/core';
-import type {  CardComponentProps  } from '../types/types';
+import type {  CardComponentProps  } from '../../types/types';
 
 
 function CardComponent({ launch, onSelect }: CardComponentProps) {

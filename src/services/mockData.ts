@@ -1,4 +1,4 @@
-import type { Launch  } from '../types/types.ts';
+import type { Launch  } from '../types/types';
 
 export const mockLaunches: Launch [] = [
     {

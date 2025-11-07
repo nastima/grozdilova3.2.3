@@ -1,14 +1,14 @@
 import { useReducer, useEffect } from 'react';
 import { Loader, Center, Alert } from '@mantine/core';
 import './App.css';
-import CardComponent from './components/CardComponent';
-import Modal from './components/Modal';
-import { getLaunches } from './services/spacexApi';
-import { launchReducer, initialState } from './state/launchReducer';
-import type { Launch  } from './types/types';
+import CardComponent from '../components/CardComponent/CardComponent';
+import Modal from '../components/Modal/Modal';
+import { getLaunches } from '../services/spacexApi';
+import { reducer, initialState } from '../state/Reducer';
+import type { Launch  } from '../types/types';
 
 function App() {
-    const [state, dispatch] = useReducer(launchReducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
         const fetchLaunches = async () => {

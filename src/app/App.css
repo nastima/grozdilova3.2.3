@@ -1,0 +1,49 @@
+/* App.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Скрываем полосу скролла но оставляем функциональность */
+html {
+    overflow: -moz-scrollbars-none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+body {
+    overflow-y: scroll; /* Разрешаем скролл */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.Grid {
+    display: grid;
+    grid-template-columns: repeat(3, 302px);
+    gap: 16px;
+    justify-content: center;
+    align-items: start;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
