@@ -14,7 +14,6 @@ html, body {
 
 /* Скрываем полосу скролла но оставляем функциональность */
 html {
-    overflow: -moz-scrollbars-none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
 }
 
