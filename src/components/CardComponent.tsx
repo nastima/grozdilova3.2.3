@@ -1,53 +1,90 @@
-import { Card, Text, Image, Badge, Group } from '@mantine/core';
-import type { Launch } from '../types/Launch';
+import React from 'react';
+import { Card, Text, Image, Button } from '@mantine/core';
+import type {  CardComponentProps  } from '../types/types';
 
-interface CardComponentProps {
-    launch: Launch;
-    onSelect: (launch: Launch) => void;
-}
 
 function CardComponent({ launch, onSelect }: CardComponentProps) {
-    const launchDate = new Date(launch.launch_date_utc).toLocaleDateString();
+
+    const handleSeeMoreClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onSelect(launch);
+    };
 
     return (
         <Card
-            variant="custom-card"
             shadow="sm"
             padding="md"
             radius="md"
             withBorder
-            onClick={() => onSelect(launch)}
         >
-            {launch.links?.mission_patch_small && (
-                <Card.Section>
+            {/* Изображение или пустой div */}
+            <Card.Section
+                style={{
+                    flex: '1 1 auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '150px'
+                }}>
+                {launch.links?.mission_patch_small ? (
                     <Image
                         src={launch.links.mission_patch_small}
-                        height={160}
+                        height={150}
+                        width={150}
                         alt={launch.mission_name}
                         fit="contain"
                         p="md"
                     />
-                </Card.Section>
-            )}
+                ) : (
+                    <div style={{
+                        width: '150px',
+                        height: '150px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#ccc',
+                        fontSize: '14px'
+                    }}>
+                        No Image
+                    </div>
+                )}
+            </Card.Section>
 
-            <Group justify="space-between" mt="md" mb="xs">
-                <Text fw={500} size="lg">{launch.mission_name}</Text>
-                <Badge color={launch.launch_success ? 'teal' : 'red'}>
-                    {launch.launch_success ? 'Success' : 'Failed'}
-                </Badge>
-            </Group>
-
-            <Text size="sm" c="dimmed">
-                Rocket: {launch.rocket?.rocket_name}
+            {/* Название миссии */}
+            <Text
+                fw={700}
+                size="xl"
+                style={{
+                    textAlign: 'center',
+                    marginBottom: '8px'
+                }}
+            >
+                {launch.mission_name}
             </Text>
 
-            <Text size="sm" c="dimmed">
-                Launch Date: {launchDate}
-            </Text>
+            {/* Название ракеты */}
 
-            <Text size="sm" c="dimmed">
-                Flight #{launch.flight_number}
+            <Text
+                size="md"
+                c="dimmed"
+                style={{
+                    textAlign: 'center',
+                    marginBottom: '16px'
+                }}
+            >
+                {launch.rocket?.rocket_name}
             </Text>
+            {/* Кнопка See More */}
+            <Button
+                fullWidth
+                style={{
+                    margin: 'auto',
+                }}
+                onClick={handleSeeMoreClick}
+            >
+                See More
+            </Button>
+
         </Card>
     );
 }

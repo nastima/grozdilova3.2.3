@@ -5,7 +5,7 @@ import CardComponent from './components/CardComponent';
 import Modal from './components/Modal';
 import { getLaunches } from './services/spacexApi';
 import { launchReducer, initialState } from './state/launchReducer';
-import type { Launch } from './types/Launch';
+import type { Launch  } from './types/types';
 
 function App() {
     const [state, dispatch] = useReducer(launchReducer, initialState);

@@ -31,23 +31,35 @@ const theme = createTheme({
             },
             styles: (theme: any) => ({
                 root: {
-                    // Базовые стили для всех карточек
-                    '&[data-variant="custom-card"]': {
-                        width: '302px',
-                        height: '414px',
-                        borderRadius: '24px',
-                        backgroundColor: theme.white,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '16px',
-                        cursor: 'pointer',
-                        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-
-                        '&:hover': {
-                            transform: 'translateY(-4px)',
-                            boxShadow: theme.shadows.md,
-                        },
-                    },
+                    width: '300px',
+                    height: '380px',
+                    paddingBottom: '20px',
+                    borderRadius: '24px',
+                    backgroundColor: theme.white,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px',
+                    boxShadow: '0px 2px 8px 0px #21252914, 0px 1px 2px 0px #2125291A',
+                },
+            }),
+        },
+        Button: {
+            defaultProps: {
+                color: 'blue',
+                size: 'md',
+            },
+            styles: (theme: any) => ({
+                root: {
+                    width: '250px',
+                    height: '35px',
+                    borderRadius: '8px',
+                    fontWeight: '500',
+                    fontSize: '14px',
+                    backgroundColor: theme.colors.blue[6],
+                    color: theme.white,
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
                 },
             }),
         },

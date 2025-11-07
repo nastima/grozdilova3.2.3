@@ -1,12 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import type { Launch } from '../types/Launch';
+import type { ModalProps  } from '../types/types';
 
-interface ModalProps {
-    launch: Launch | null;
-    isOpen: boolean;
-    onClose: () => void;
-}
 
 function Modal({ launch, isOpen, onClose }: ModalProps) {
     useEffect(() => {
@@ -40,6 +35,7 @@ function Modal({ launch, isOpen, onClose }: ModalProps) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 zIndex: 1000,
+                padding: '20px',
             }}
             onClick={onClose}
         >
@@ -49,14 +45,29 @@ function Modal({ launch, isOpen, onClose }: ModalProps) {
                     padding: '24px',
                     borderRadius: '12px',
                     maxWidth: '500px',
-                    width: '90%',
+                    width: '100%',
                     maxHeight: '80vh',
                     overflow: 'auto',
                 }}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <h2 style={{ margin: 0 }}>Mission Details</h2>
+                {/* Заголовок и кнопка закрытия */}
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '16px'
+                    }}>
+                    <h2
+                        style={{
+                            margin: 0,
+                            fontSize: '24px',
+                            fontWeight: 'bold',
+                            color: '#000'
+                        }}>
+                        {launch.mission_name}
+                    </h2>
                     <button
                         onClick={onClose}
                         style={{
@@ -70,20 +81,66 @@ function Modal({ launch, isOpen, onClose }: ModalProps) {
                     </button>
                 </div>
 
+                {/* Большое изображение миссии */}
                 {launch.links?.mission_patch && (
                     <img
                         src={launch.links.mission_patch}
                         alt={launch.mission_name}
-                        style={{ width: '200px', height: '200px', display: 'block', margin: '0 auto 16px' }}
+                        style={{
+                            width: '200px',
+                            height: '200px',
+                            display: 'block',
+                            margin: '0 auto 16px'
+                        }}
                     />
                 )}
+                {/* Название миссии (повторно) */}
+                <h4 style={{
+                    margin: '0',
+                    fontSize: '16px',
+                    color: '#000',
+                    fontWeight: 'bold'
+                }}>Mission name:</h4>
+                <p style={{margin: '5px 0 10px 0 '}}>{launch.mission_name}</p>
 
-                <h3 style={{ marginBottom: '8px' }}>{launch.mission_name}</h3>
-                <p style={{ marginBottom: '8px' }}><strong>Rocket:</strong> {launch.rocket?.rocket_name}</p>
+                {/* Название ракеты */}
+                <h4 style={{
+                    margin: '0',
+                    fontSize: '16px',
+                    color: '#000',
+                    fontWeight: 'bold'
+                }}><strong>Rocket:</strong></h4>
+                <p style={{margin: '5px 0 10px 0 '}}>{launch.rocket?.rocket_name}</p>
 
-                {launch.details && (
-                    <p style={{ lineHeight: '1.5' }}>{launch.details}</p>
-                )}
+                {/* Детали миссии */}
+                <div>
+                    <h4 style={{
+                        margin: '0',
+                        fontSize: '16px',
+                        color: '#000',
+                        fontWeight: 'bold'
+                    }}>
+                        Details:
+                    </h4>
+                    {launch.details ? (
+                        <p style={{
+                            margin: '5px 0 10px 0 ',
+                            lineHeight: '1.5',
+                            color: '#000',
+                            fontSize: '14px'
+                        }}>
+                            {launch.details}
+                        </p>
+                    ) : (
+                        <p style={{
+                            margin: '5px 0 10px 0 ',
+                            color: '#666',
+                            fontStyle: 'italic'
+                        }}>
+                            No details available for this mission.
+                        </p>
+                    )}
+                </div>
             </div>
         </div>,
         document.body

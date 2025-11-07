@@ -1,6 +1,6 @@
-import type { Launch } from '../types/Launch';
+import type { Launch  } from '../types/types';
 
-export const getLaunches = async (year: string = '2020'): Promise<Launch[]> => {
+export const getLaunches = async (year: string = '2020'): Promise<Launch []> => {
     const response = await fetch(`https://api.spacexdata.com/v3/launches?launch_year=${year}`);
 
     if (!response.ok) {
@@ -10,7 +10,7 @@ export const getLaunches = async (year: string = '2020'): Promise<Launch[]> => {
     const data = await response.json();
 
     // Убираем дубликаты по flight_number
-    return data.filter((launch: Launch, index: number, array: Launch[]) =>
+    return data.filter((launch: Launch , index: number, array: Launch []) =>
         array.findIndex(item => item.flight_number === launch.flight_number) === index
     );
 };

@@ -1,6 +1,6 @@
-import type { Launch } from '../types/Launch';
+import type { Launch  } from '../types/types.ts';
 
-export const mockLaunches: Launch[] = [
+export const mockLaunches: Launch [] = [
     {
         flight_number: 94,
         mission_name: "Starlink-1",

@@ -1,19 +1,4 @@
-import type { Launch } from '../types/Launch';
-
-export interface LaunchState {
-    launches: Launch[];
-    selectedLaunch: Launch | null;
-    loading: boolean;
-    error: string | null;
-    isModalOpen: boolean;
-}
-
-export type LaunchAction =
-    | { type: 'FETCH_START' }
-    | { type: 'FETCH_SUCCESS'; payload: Launch[] }
-    | { type: 'FETCH_ERROR'; payload: string }
-    | { type: 'SELECT_LAUNCH'; payload: Launch }
-    | { type: 'CLOSE_MODAL' };
+import type { LaunchState, LaunchAction  } from '../types/types.ts';
 
 export const initialState: LaunchState = {
     launches: [],
