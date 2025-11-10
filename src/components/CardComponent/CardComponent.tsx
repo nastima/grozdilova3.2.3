@@ -42,7 +42,8 @@ function CardComponent({ launch, onSelect }: CardComponentProps) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#ccc',
+                        backgroundColor: '#f5f5f5',
+                        color: '#999',
                         fontSize: '14px'
                     }}>
                         No Image

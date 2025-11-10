@@ -83,19 +83,44 @@ function Modal({ launch, isOpen, onClose }: ModalProps) {
                     </button>
                 </div>
 
-                {/* Большое изображение миссии */}
-                {launch.links?.mission_patch && (
-                    <img
-                        src={launch.links.mission_patch}
-                        alt={launch.mission_name}
-                        style={{
-                            width: '200px',
-                            height: '200px',
-                            display: 'block',
-                            margin: '0 auto 16px'
-                        }}
-                    />
-                )}
+                {/* Большое изображение миссии или заглушка */}
+                <div style={{
+                        width: '200px',
+                        height: '200px',
+                        margin: '0 auto 16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
+                    {launch.links?.mission_patch ? (
+                        <img
+                            src={launch.links.mission_patch}
+                            alt={launch.mission_name}
+                            style={{
+                                width: '200px',
+                                height: '200px',
+                                display: 'block',
+                                margin: '0 auto 16px'
+                            }}
+                        />
+                    ) : (
+                    <div style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#f5f5f5',
+                        color: '#999',
+                        fontSize: '14px',
+                        borderRadius: '8px',
+                        border: '1px solid #e0e0e0'
+                    }}>
+                    No Image
+                </div>
+                    )}
+            </div>
                 {/* Название миссии (повторно) */}
                 <h4 style={{
                     margin: '0',
@@ -126,7 +151,7 @@ function Modal({ launch, isOpen, onClose }: ModalProps) {
                     </h4>
                     {launch.details ? (
                         <p style={{
-                            margin: '5px 0 10px 0 ',
+                             margin: '5px 0 10px 0 ',
                             lineHeight: '1.5',
                             color: '#000',
                             fontSize: '14px'

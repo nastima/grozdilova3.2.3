@@ -108,8 +108,8 @@ describe('Modal Component', () => {
         expect(screen.getByText('No details available for this mission.')).toBeInTheDocument();
     });
 
-    // ТЕСТ 8: Проверка, что модалка не показывает изображение когда оно отсутствует
-    it('Do not show the mission image when mission_patch is missing', () => {
+    // ТЕСТ 8: Проверка, что модалка показывает заглушку когда изображение отсутствует
+    it('should show "No Image" placeholder when mission_patch is missing', () => {
         // Создаем мок
         const launchWithoutImage: Launch = {
             ...mockLaunches[0],
@@ -125,5 +125,9 @@ describe('Modal Component', () => {
         // Проверяем что изображение не отображается
         const image = screen.queryByAltText('Starlink-1');
         expect(image).not.toBeInTheDocument();
+
+        // Проверяем что отображается заглушка "No Image Available"
+        const placeholder = screen.getByText('No Image');
+        expect(placeholder).toBeInTheDocument();
     });
 });
